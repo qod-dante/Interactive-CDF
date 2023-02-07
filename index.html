@@ -5,38 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <title>Frontend Mentor | Interactive card details form</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Grotesk:wght@500">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/main-palette.css">
 </head>
-<body>
-  <main>
-    <div class="main-bg-block">
-      <div class="card-back-block">
+<body class="grid">
+  <main class="grid">
+    <div class="card-block grid">
+      <div class="card-back-block grid">
+        <img src="/images/bg-card-back.png" class="cardBackBG" alt="Card Back">
         <span id="cvcOutput">000</span>
       </div>
-      <div class="card-front-block">
+      <div class="card-front-block grid">
         <img class="card-logo" src="/images/card-logo.svg" alt="Card Logo">
         <span id="cardNumberOutput">0000 0000 0000 0000</span>
         <span id="cardHolderOutput">Jane Appleseed</span>
         <span id="ExpDateOutput">00/00</span>
       </div>
     </div>
-    <div class="form-block">
-      <form method="get" id="cardHolderDetails">
-        <div class="pre-form">
-          <label for="cardHolder">CARDHOLDER NAME</label>
-          <input type="text" id="cardHolder" name="cardHolder" placeholder="e.g. Jane Appleseed">
-          <label for="cardNumber">CARD NUMBER</label>
-          <input type="number" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
-          <label for="expDateMM">EXP. DATE (MM/YY)</label>
-          <input type="number" id="expDateMM" name="expDateMM" placeholder="MM">
-          <input type="number" id="expDateYY" name="expDateYY" placeholder="YY">
-          <label for="cvc">CVC</label>
-          <input type="number" id="cvc" name="cvc" placeholder="e.g. 123">
-          <input type="submit" value="Confirm">
+    <div class="form-block grid">
+      <form method="get" id="cardHolderDetails" class="grid">
+        <div class="pre-form grid">
+          <div class="cardHolderBox grid">
+            <label for="cardHolder">CARDHOLDER NAME</label>
+            <input type="text" id="cardHolder" name="cardHolder" placeholder="e.g. Jane Appleseed">
+          </div>
+          <div class="cardNumberBox grid">
+            <label for="cardNumber">CARD NUMBER</label>
+            <input type="number" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
+          </div>
+          <div class="expDateBox grid">
+            <label for="expDateMM">EXP. DATE (MM/YY)</label>
+            <input type="number" id="expDateMM" name="expDateMM" placeholder="MM">
+            <input type="number" id="expDateYY" name="expDateYY" placeholder="YY">
+          </div>
+          <div class="cvcBox grid">
+            <label for="cvc">CVC</label>
+            <input type="number" id="cvc" name="cvc" placeholder="e.g. 123">
+          </div>
+          <div class="confirmBox grid">
+            <input type="submit" value="Confirm">
+          </div>
         </div>
-        <div class="post-form">
-          <img class="formSuccessIcon" alt="Form Success Icon">
+        <div class="post-form grid">
+          <img class="formSuccessIcon" src="/images/icon-complete.svg" alt="Form Successful Icon">
           <h3>THANK YOU!</h3>
           <span>We've added your card details</span>
           <input type="reset" value="Continue" id="cardDetailsReset">
@@ -49,5 +61,6 @@
     <span>Coded by <a href="https://github.com/qod-dante/" target="_blank">qod-dante</a>.</span>
   </footer>
   <script src="/script.js"></script>
+  <script src="/form-validate.js"></script>
 </body>
 </html>

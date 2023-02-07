@@ -5,7 +5,7 @@
     --white: hsl(0, 0%, 100%);
     --lightGreyishViolet: hsl(270, 3%, 87%);
     --veryDarkViolet: hsl(278, 68%, 11%);
-    --paraFontSize: 18px;
+    --pFontSize: 18px;
 }
 
 * {
@@ -13,6 +13,7 @@
     padding: 0;
     font-family: 'Space Grotesk', sans-serif;
     text-decoration: none;
+    box-sizing: border-box;
 }
 
 /* Quick Styles */
@@ -22,9 +23,148 @@
 .txt-a-center { text-align: center; }
 .a-center { align-items: center; }
 .j-center { justify-content: center; }
+.width100 { width: 100%; }
+.height100 { height: 100%; }
+.w100v { width: 100vw; }
+.h-100v { height: 100vh; }
 
-@media screen and (max-width: 600px) {}
+/* Common Styles */
+
+.card-block {
+    background: var(--veryDarkViolet) url(/images/bg-main-desktop.png) no-repeat;
+    background-size: cover, 100% 100%;
+}
+
+.card-backBG {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-front-block {
+    background: var(--LnGrad1) url(/images/bg-card-front.png) no-repeat;
+    background-size: cover, 100% 100%;
+}
+
+.form-block {
+    grid-area: form-block;
+    grid-template-areas:'cardHolderDetails';
+}
+
+#cardHolderDetails {
+    grid-area: 'cardHolderDetails';
+    grid-template-areas:
+    'pre-form'
+    'post-form';
+}
+
+.pre-form {
+    grid-area: 'pre-form';
+    grid-template-areas:
+    'cardHolderBox cardHolderBox'
+    'cardNumberBox cardNumberBox'
+    'expDateBox cvcBox'
+    'confirmBox confirmBox';
+}
+
+.cardHolderBox {grid-area: cardHolderBox; }
+.cardNumberBox { grid-area: cardNumberBox; }
+
+.expDateBox {
+    grid-area: expDateBox;
+    grid-template-areas:
+    'LblExpDate LblExpDate'
+    'expDateMM expDateYY';
+}
+
+.expDateBox label { grid-area: LblExpDate; }
+#expDateMM { grid-area: expDateMM; }
+#expdateYY { grid-area: expdateYY; }
+.cvcBox { grid-area: cvcBox; }
+.confirmBox { grid-area: confirmBox; }
+
+.post-form {
+    grid-area: post-form;
+    grid-template-areas:
+    'formSuccessIcon'
+    'postForm-h3'
+    'postForm-text'
+    'cardDetailsReset';
+}
+
+.formSuccessIcon { grid-area: formSuccessIcon; }
+.postform h3 { grid-area: postForm-h3; }
+.postform span { grid-area: postForm-text; }
+#cardDetailsReset { grid-area: cardDetailsReset; }
+
+/* Small Devices 600px and lower */
+
+@media screen and (max-width: 600px) {
+    body {
+        grid-template-areas:
+        'main'
+        'attribution';
+    }
+
+    main {
+        grid-area: main;
+        grid-template-areas:
+        'card-block'
+        'form-block';
+    }
+
+    .card-block {
+        grid-area: card-block;
+        grid-template-areas:
+        'card-back'
+        'card-front';
+        background-image: url(/images/bg-main-mobile.png);
+    }
+
+    .card-back-block {
+        grid-area: card-back;
+        grid-template-areas:
+        'cardBackBG'
+        'cvcOutput';
+    }
+
+    .cardBackBG {
+        grid-area: cardBackBG;
+        width: 75%;
+        height: 75%;
+    }
+
+    #cvcOutput {
+        grid-area: cvcOutput;
+    }
+
+    .card-front-block {
+        grid-area: card-front;
+        grid-template-areas:
+        'card-logo .'
+        'cNumberOut cNumberOut'
+        'cHolderOut ExpDateOut';
+    }
+
+    .card-logo {
+        grid-area: card-logo;
+    }
+
+    #cardNumberOutput {
+        grid-area: cNumberOut;
+    }
+
+    #cardHolderOutput {
+        grid-area: cHolderOut;
+    }
+
+    #ExpDateOutput {
+        grid-area: ExpDateOut;
+    }
+}
 
 /* Attribution */
-.attribution { font-size: 12px; }
+.attribution { 
+    font-size: 12px;
+    grid-area: attribution;
+}
 .attribution a { color: hsl(228, 45%, 44%); }
