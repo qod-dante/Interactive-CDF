@@ -16,6 +16,15 @@
     box-sizing: border-box;
 }
 
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearence: textfield;
+}
+
 /* Quick Styles */
 
 .grid { display: grid; }
@@ -30,57 +39,114 @@
 
 /* Common Styles */
 
+body {
+    max-width: 1440px;
+    min-width: 280px;
+}
+
 .card-block {
     background: var(--veryDarkViolet) url(/images/bg-main-desktop.png) no-repeat;
-    background-size: cover, 100% 100%;
-}
-
-.card-backBG {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.card-front-block {
-    background: var(--LnGrad1) url(/images/bg-card-front.png) no-repeat;
-    background-size: cover, 100% 100%;
 }
 
 .form-block {
     grid-area: form-block;
     grid-template-areas:'cardHolderDetails';
+    grid-template-rows: auto;
+    grid-template-columns: auto;
 }
 
 #cardHolderDetails {
-    grid-area: 'cardHolderDetails';
+    grid-area: cardHolderDetails;
     grid-template-areas:
-    'pre-form'
-    'post-form';
+    'pre-form pre-form'
+    'post-form post-form';
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 .pre-form {
-    grid-area: 'pre-form';
+    grid-area: pre-form;
     grid-template-areas:
     'cardHolderBox cardHolderBox'
     'cardNumberBox cardNumberBox'
-    'expDateBox cvcBox'
+    'expDate_cvcBox expDate_cvcBox'
     'confirmBox confirmBox';
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr 1fr;
 }
 
-.cardHolderBox {grid-area: cardHolderBox; }
-.cardNumberBox { grid-area: cardNumberBox; }
-
-.expDateBox {
-    grid-area: expDateBox;
+.cardHolderBox {
+    grid-area: cardHolderBox;
     grid-template-areas:
-    'LblExpDate LblExpDate'
-    'expDateMM expDateYY';
+    'LblCardHolder LblCardHolder'
+    'cardHolder cardHolder';
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
 }
 
-.expDateBox label { grid-area: LblExpDate; }
-#expDateMM { grid-area: expDateMM; }
-#expdateYY { grid-area: expdateYY; }
-.cvcBox { grid-area: cvcBox; }
-.confirmBox { grid-area: confirmBox; }
+.cardHolderBox label {
+    grid-area: LblCardHolder;
+}
+
+#cardHolder {
+    grid-area: cardHolder;
+}
+
+.cardNumberBox {
+    grid-area: cardNumberBox;
+    grid-template-areas:
+    'LblCardNumber LblCardNumber'
+    'cardNumber cardNumber';
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cardNumberBox label {
+    grid-area: LblCardNumber;
+}
+
+#cardNumber {
+    grid-area: cardNumber;
+}
+
+.expDate_cvcBox {
+    grid-area: expDate_cvcBox;
+    grid-template-areas:
+    'LblExpDate LblExpDate LblCvc LblCvc'
+    'expDateMM expDateYY cvc cvc';
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.LblExpDate { grid-area: LblExpDate; }
+
+#expDateMM {
+    grid-area: expDateMM;
+    width: 70px;
+}
+
+#expDateYY {
+    grid-area: expDateYY;
+    width: 70px;
+}
+
+.LblCvc { grid-area: LblCvc; }
+
+#cvc {
+    grid-area: cvc;
+    width: 100px;
+}
+
+.confirmBox {
+    grid-area: confirmBox;
+    grid-template-areas:'confirm-btn';
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+}
+
+.confirmBox input {
+    grid-area: confirm-btn;
+}
 
 .post-form {
     grid-area: post-form;
@@ -89,6 +155,8 @@
     'postForm-h3'
     'postForm-text'
     'cardDetailsReset';
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: 1fr;
 }
 
 .formSuccessIcon { grid-area: formSuccessIcon; }
@@ -101,36 +169,38 @@
 @media screen and (max-width: 600px) {
     body {
         grid-template-areas:
-        'main'
-        'attribution';
+        'main main'
+        'attribution attribution';
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto;
     }
 
     main {
         grid-area: main;
         grid-template-areas:
-        'card-block'
-        'form-block';
+        'card-block card-block card-block card-block'
+        'form-block form-block form-block form-block';
+        grid-template-rows: auto auto;
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .card-block {
         grid-area: card-block;
         grid-template-areas:
-        'card-back'
-        'card-front';
-        background-image: url(/images/bg-main-mobile.png);
+        'card-back card-back'
+        'card-front card-front';
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto;
     }
 
     .card-back-block {
         grid-area: card-back;
-        grid-template-areas:
-        'cardBackBG'
-        'cvcOutput';
-    }
-
-    .cardBackBG {
-        grid-area: cardBackBG;
-        width: 75%;
-        height: 75%;
+        grid-template-areas: 'cvcOutput';
+        background: var(--white) url(/images/bg-card-back.png) no-repeat;
+        max-width: 447px;
+        max-height: 245px;
+        min-width: 312.9px;
+        min-height: 171.5px;
     }
 
     #cvcOutput {
@@ -140,9 +210,16 @@
     .card-front-block {
         grid-area: card-front;
         grid-template-areas:
-        'card-logo .'
-        'cNumberOut cNumberOut'
-        'cHolderOut ExpDateOut';
+        'card-logo . . .'
+        'cNumberOut cNumberOut . .'
+        'cHolderOut cHolderOut . ExpDateOut';
+        grid-template-rows: repeat(3, auto);
+        grid-template-columns: repeat(4, 1fr);
+        background: var(--LnGrad1) url(/images/bg-card-front.png) no-repeat;
+        max-width: 447px;
+        max-height: 245px;
+        min-width: 312.9px;
+        min-height: 171.5px;
     }
 
     .card-logo {
@@ -159,6 +236,21 @@
 
     #ExpDateOutput {
         grid-area: ExpDateOut;
+    }
+
+}
+
+/* Main Backgrounds */
+
+@media screen and (max-width: 375px) {
+    .card-block {
+        background-image: url('/images/bg-main-mobile.png');
+    }
+}
+
+@media screen and (min-width: 376px) and (max-width: 1440px) {
+    .card-block {
+        background-image: url('/images/bg-main-desktop');
     }
 }
 
