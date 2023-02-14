@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | Interactive card details form</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/main-palette.css">
+  <link rel="stylesheet" href="./main-palette.css">
 </head>
 <body class="grid width100">
   <main class="grid width100">
     <div class="card-block grid">
-      <div class="card-back-block grid">
-        <span id="cvcOutput">000</span>
+      <div class="card-back">
+        <img src="./images/bg-card-back.png" class="card-back__img" alt="Your Card Back">
+        <span id="cvcOutput" class="absolute">000</span>
       </div>
-      <div class="card-front-block grid">
-        <img class="card-logo" src="/images/card-logo.svg" alt="Card Logo">
-        <span id="cardNumberOutput">0000 0000 0000 0000</span>
-        <span id="cardHolderOutput">Jane Appleseed</span>
-        <span id="ExpDateOutput">00/00</span>
+      <div class="card-front">
+        <img src="./images/bg-card-front.png" class="card-front__img" alt="Your Card Front">
+        <img class="card-logo absolute" src="./images/card-logo.svg" alt="Card Logo">
+        <span id="cardNumberOutput" class="absolute">0000 0000 0000 0000</span>
+        <span id="cardHolderOutput" class="absolute">Jane Appleseed</span>
+        <span id="ExpDateOutput" class="absolute">00/00</span>
       </div>
     </div>
     <div class="form-block grid width100">
@@ -45,7 +47,7 @@
           </div>
         </div>
         <div class="post-form grid">
-          <img class="formSuccessIcon" src="/images/icon-complete.svg" alt="Form Successful Icon">
+          <img class="formSuccessIcon" src="./images/icon-complete.svg" alt="Form Successful Icon">
           <h3>THANK YOU!</h3>
           <span>We've added your card details</span>
           <input type="reset" value="Continue" id="cardDetailsReset">
@@ -57,7 +59,7 @@
     <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span> 
     <span>Coded by <a href="https://github.com/qod-dante/" target="_blank">qod-dante</a>.</span>
   </footer>
-  <script src="/script.js"></script>
-  <script src="/form-validate.js"></script>
+  <script src="./script.js"></script>
+  <script src="./form-validate.js"></script>
 </body>
 </html>

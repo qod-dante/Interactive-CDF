@@ -35,7 +35,9 @@ input[type=number] {
 .width100 { width: 100%; }
 .height100 { height: 100%; }
 .w100v { width: 100vw; }
-.h-100v { height: 100vh; }
+.h100v { height: 100vh; }
+.absolute { position: absolute; }
+.relative { position: relative; }
 
 /* Common Styles */
 
@@ -44,15 +46,13 @@ body {
     min-width: 280px;
 }
 
-.card-block {
-    background: var(--veryDarkViolet) url(/images/bg-main-desktop.png) no-repeat;
-}
-
 .form-block {
     grid-area: form-block;
     grid-template-areas:'cardHolderDetails';
     grid-template-rows: auto;
     grid-template-columns: auto;
+    background-color: var(--white);
+    padding-top: 25%;
 }
 
 #cardHolderDetails {
@@ -171,8 +171,6 @@ body {
         grid-template-areas:
         'main main'
         'attribution attribution';
-        grid-template-rows: auto auto;
-        grid-template-columns: auto auto;
     }
 
     main {
@@ -187,58 +185,91 @@ body {
     .card-block {
         grid-area: card-block;
         grid-template-areas:
-        'card-back card-back'
-        'card-front card-front';
+        'card-back'
+        'card-front';
         grid-template-rows: auto auto;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto;
+        margin-bottom: -20%;
+        max-height: 530px;
+        color: var(--lightGreyishViolet);
     }
 
-    .card-back-block {
+    .card-back {
         grid-area: card-back;
-        grid-template-areas: 'cvcOutput';
-        background: var(--white) url(/images/bg-card-back.png) no-repeat;
+        position: relative;
+        top: 25%;
+        left: 20%;
+    }
+
+    .card-front {
+        grid-area: card-front;
+        position: relative;
+        bottom: 19%;
+        left: 5%;
+    }
+
+    .card-back, .card-front {
         max-width: 447px;
-        max-height: 245px;
-        min-width: 312.9px;
-        min-height: 171.5px;
+        max-height: 265px;
+    }
+
+    .card-back__img, .card-front__img {
+        height: 100%;
+        width: 75%;
     }
 
     #cvcOutput {
-        grid-area: cvcOutput;
-    }
-
-    .card-front-block {
-        grid-area: card-front;
-        grid-template-areas:
-        'card-logo . . .'
-        'cNumberOut cNumberOut . .'
-        'cHolderOut cHolderOut . ExpDateOut';
-        grid-template-rows: repeat(3, auto);
-        grid-template-columns: repeat(4, 1fr);
-        background: var(--LnGrad1) url(/images/bg-card-front.png) no-repeat;
-        max-width: 447px;
-        max-height: 245px;
-        min-width: 312.9px;
-        min-height: 171.5px;
+        font-size: 0.7em;
+        right: 34%;
+        top: 45%;
+        letter-spacing: 1.5px;
     }
 
     .card-logo {
-        grid-area: card-logo;
+        top: 12%;
+        left: 7%;
+        width: 15%;
+        height: 20%;
     }
 
     #cardNumberOutput {
-        grid-area: cNumberOut;
+        bottom: 33%;
+        left: 6%;
+        font-size: 120%;
+        letter-spacing: 0.07em;
     }
 
     #cardHolderOutput {
-        grid-area: cHolderOut;
+        left: 6%;
+        bottom: 13%;
+        text-transform: uppercase;
+        font-size: 70%;
+        letter-spacing: 0.07em;
     }
 
     #ExpDateOutput {
-        grid-area: ExpDateOut;
+        bottom: 13%;
+        right: 30%;
+        font-size: 70%;
+        letter-spacing: 0.07em;
     }
 
 }
+
+/* Letter spacing */
+
+@media screen and (min-width: 420px) {
+    #cardNumberOutput, #cardHolderOutput, #ExpDateOutput { letter-spacing: 0.18em }
+}
+
+@media screen and (max-width: 360px) and (min-width: 330px) {
+    #cardNumberOutput, #cardHolderOutput, #ExpDateOutput { letter-spacing: 0.02em; }
+}
+
+@media screen and (max-width: 329px) {
+    #cardNumberOutput, #cardHolderOutput, #ExpDateOutput { letter-spacing: normal; }
+}
+
 
 /* Main Backgrounds */
 
@@ -250,7 +281,7 @@ body {
 
 @media screen and (min-width: 376px) and (max-width: 1440px) {
     .card-block {
-        background-image: url('/images/bg-main-desktop');
+        background-image: url('/images/bg-main-desktop.png');
     }
 }
 
