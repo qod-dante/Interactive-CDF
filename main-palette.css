@@ -16,15 +16,6 @@
     box-sizing: border-box;
 }
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type=number] {
-    -moz-appearence: textfield;
-}
-
 /* Quick Styles */
 
 .grid { display: grid; }
@@ -43,7 +34,7 @@ input[type=number] {
 
 body {
     max-width: 1440px;
-    min-width: 280px;
+    min-width: 320px;
 }
 
 .form-block {
@@ -53,6 +44,7 @@ body {
     grid-template-columns: auto;
     background-color: var(--white);
     padding-top: 25%;
+    justify-content: center;
 }
 
 #cardHolderDetails {
@@ -62,6 +54,9 @@ body {
     'post-form post-form';
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
+    font-size: var(--pFontSize);
+    justify-content: center;
+    max-width: 385px;
 }
 
 .pre-form {
@@ -73,6 +68,25 @@ body {
     'confirmBox confirmBox';
     grid-template-rows: repeat(4, auto);
     grid-template-columns: 1fr 1fr;
+    margin: 0 1rem 2rem;
+}
+
+.pre-form > div {
+    padding-bottom: 1.2rem;
+}
+
+.pre-form div > label {
+    font-size: 0.7em;
+    letter-spacing: 2px;
+    padding-bottom: 0.6rem;
+}
+
+.pre-form div > input, #cardDetailsReset {
+    font-size: var(--pFontSize);
+    padding: 0.7rem 1rem;
+    outline: none;
+    border: 1px solid var(--lightGreyishViolet);
+    border-radius: 10px;
 }
 
 .cardHolderBox {
@@ -134,7 +148,7 @@ body {
 
 #cvc {
     grid-area: cvc;
-    width: 100px;
+    width: 100%;
 }
 
 .confirmBox {
@@ -146,23 +160,55 @@ body {
 
 .confirmBox input {
     grid-area: confirm-btn;
+    color: var(--white);
+    background-color: var(--veryDarkViolet);
 }
 
 .post-form {
     grid-area: post-form;
     grid-template-areas:
-    'formSuccessIcon'
-    'postForm-h3'
-    'postForm-text'
-    'cardDetailsReset';
-    grid-template-rows: repeat(4, auto);
-    grid-template-columns: 1fr;
+    'formSuccessIcon formSuccessIcon'
+    'postForm-h3 postForm-h3'
+    'postForm-text postForm-text'
+    'cardDetailsReset cardDetailsReset';
+    grid-template-rows: repeat(4, max-content);
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    margin: 0 1rem 2rem;
 }
 
-.formSuccessIcon { grid-area: formSuccessIcon; }
-.postform h3 { grid-area: postForm-h3; }
-.postform span { grid-area: postForm-text; }
-#cardDetailsReset { grid-area: cardDetailsReset; }
+.formSuccessIcon {
+    grid-area: formSuccessIcon;
+    justify-self: center;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2rem;
+}
+
+.post-form h3 {
+    grid-area: postForm-h3;
+    justify-self: center;
+    font-size: 1.7em;
+    font-weight: inherit;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    color: var(--veryDarkViolet);
+}
+
+.post-form span {
+    grid-area: postForm-text;
+    justify-self: center;
+    color: grey;
+    margin-bottom: 3rem;
+}
+
+#cardDetailsReset {
+    grid-area: cardDetailsReset;
+    justify-self: center;
+    color: var(--lightGreyishViolet);
+    background-color: var(--veryDarkViolet);
+    width: 100%;
+}
 
 /* Small Devices 600px and lower */
 
@@ -273,17 +319,18 @@ body {
 
 /* Main Backgrounds */
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 600px) {
     .card-block {
         background-image: url('/images/bg-main-mobile.png');
+        background-size: 100% 100%;
     }
 }
 
-@media screen and (min-width: 376px) and (max-width: 1440px) {
+/* @media screen and (min-width: 376px) and (max-width: 1440px) {
     .card-block {
         background-image: url('/images/bg-main-desktop.png');
     }
-}
+} */
 
 /* Attribution */
 .attribution { 

@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./main-palette.css">
 </head>
-<body class="grid width100">
+<body class="grid">
   <main class="grid width100">
     <div class="card-block grid">
       <div class="card-back">
@@ -33,14 +33,14 @@
           </div>
           <div class="cardNumberBox grid">
             <label for="cardNumber">CARD NUMBER</label>
-            <input type="number" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
           </div>
           <div class="expDate_cvcBox grid">
             <label for="expDateMM" class="LblExpDate">EXP. DATE (MM/YY)</label>
-            <input type="number" id="expDateMM" name="expDateMM" placeholder="MM">
-            <input type="number" id="expDateYY" name="expDateYY" placeholder="YY">
+            <input type="text" id="expDateMM" name="expDateMM" placeholder="MM">
+            <input type="text" id="expDateYY" name="expDateYY" placeholder="YY">
             <label for="cvc" class="LblCvc">CVC</label>
-            <input type="number" id="cvc" name="cvc" placeholder="e.g. 123">
+            <input type="text" id="cvc" name="cvc" placeholder="e.g. 123">
           </div>
           <div class="confirmBox grid">
             <input type="submit" value="Confirm">
@@ -55,7 +55,7 @@
       </form>
     </div>
   </main>
-  <footer class="attribution width100">
+  <footer class="attribution width100 txt-a-center">
     <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span> 
     <span>Coded by <a href="https://github.com/qod-dante/" target="_blank">qod-dante</a>.</span>
   </footer>
