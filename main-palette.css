@@ -35,6 +35,32 @@
 body {
     max-width: 1440px;
     min-width: 320px;
+    grid-template-areas:
+    'main main'
+    'attribution attribution';
+}
+
+main {
+    grid-area: main;
+    grid-template-areas:
+    'card-block form-block'
+    'card-block form-block';
+}
+
+.card-block {
+    grid-area: card-block;
+    grid-template-areas:
+    'card-front'
+    'card-back';
+    grid-template-rows: 1fr 1fr;
+}
+
+.card-front {
+    grid-area: card-front;
+}
+
+.card-back {
+    grid-area: card-back;
 }
 
 .form-block {
@@ -43,17 +69,15 @@ body {
     grid-template-rows: auto;
     grid-template-columns: auto;
     background-color: var(--white);
-    padding-top: 25%;
     justify-content: center;
 }
 
 #cardHolderDetails {
     grid-area: cardHolderDetails;
     grid-template-areas:
-    'pre-form pre-form'
-    'post-form post-form';
+    'pre-form'
+    'post-form';
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr 1fr;
     font-size: var(--pFontSize);
     justify-content: center;
     max-width: 385px;
@@ -213,14 +237,8 @@ body {
 /* Small Devices 600px and lower */
 
 @media screen and (max-width: 600px) {
-    body {
-        grid-template-areas:
-        'main main'
-        'attribution attribution';
-    }
 
     main {
-        grid-area: main;
         grid-template-areas:
         'card-block card-block card-block card-block'
         'form-block form-block form-block form-block';
@@ -238,6 +256,8 @@ body {
         margin-bottom: -20%;
         max-height: 530px;
         color: var(--lightGreyishViolet);
+        background-image: url('/images/bg-main-mobile.png');
+        background-size: 100% 100%;
     }
 
     .card-back {
@@ -300,11 +320,23 @@ body {
         letter-spacing: 0.07em;
     }
 
+    .form-block {
+        padding-top: 25%;
+    }
+
+    #cardHolderDetails {
+    grid-template-areas:
+    'pre-form pre-form'
+    'post-form post-form';
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    }
+
 }
 
 /* Letter spacing */
 
-@media screen and (min-width: 420px) {
+@media screen and (min-width: 420px) and (max-width: 600px) {
     #cardNumberOutput, #cardHolderOutput, #ExpDateOutput { letter-spacing: 0.18em }
 }
 
@@ -316,25 +348,10 @@ body {
     #cardNumberOutput, #cardHolderOutput, #ExpDateOutput { letter-spacing: normal; }
 }
 
-
-/* Main Backgrounds */
-
-@media screen and (max-width: 600px) {
-    .card-block {
-        background-image: url('/images/bg-main-mobile.png');
-        background-size: 100% 100%;
-    }
-}
-
-/* @media screen and (min-width: 376px) and (max-width: 1440px) {
-    .card-block {
-        background-image: url('/images/bg-main-desktop.png');
-    }
-} */
-
 /* Attribution */
 .attribution { 
     font-size: 12px;
     grid-area: attribution;
 }
+
 .attribution a { color: hsl(228, 45%, 44%); }
