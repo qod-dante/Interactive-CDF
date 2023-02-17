@@ -36,15 +36,15 @@ body {
     max-width: 1440px;
     min-width: 320px;
     grid-template-areas:
-    'main main'
-    'attribution attribution';
+    'main main';
 }
 
 main {
     grid-area: main;
     grid-template-areas:
     'card-block form-block'
-    'card-block form-block';
+    'card-block form-block'
+    '. attribution-desktop';
 }
 
 .card-block {
@@ -52,15 +52,22 @@ main {
     grid-template-areas:
     'card-front'
     'card-back';
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
+    background: url('./images/bg-main-desktop.png') no-repeat;
+    background-size: 100% 100%;
+    height: 100%;
 }
 
 .card-front {
     grid-area: card-front;
+    /* left: 30%; */
+    /* align-self: start; */
 }
 
 .card-back {
     grid-area: card-back;
+    /* left: 50%; */
+    /* align-self: end; */
 }
 
 .form-block {
@@ -257,19 +264,16 @@ main {
         max-height: 530px;
         color: var(--lightGreyishViolet);
         background-image: url('/images/bg-main-mobile.png');
-        background-size: 100% 100%;
     }
 
     .card-back {
         grid-area: card-back;
-        position: relative;
         top: 25%;
         left: 20%;
     }
 
     .card-front {
         grid-area: card-front;
-        position: relative;
         bottom: 19%;
         left: 5%;
     }
@@ -332,6 +336,14 @@ main {
     grid-template-columns: 1fr 1fr;
     }
 
+    .attribution {
+        display: inline;
+        font-size: 12px;
+        grid-area: attribution;
+    }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    
+    .attribution-desktop { display: none; }
 }
 
 /* Letter spacing */
@@ -349,9 +361,15 @@ main {
 }
 
 /* Attribution */
-.attribution { 
+
+.attribution-desktop {
+    display: inline;
     font-size: 12px;
-    grid-area: attribution;
+    grid-area: attribution-desktop;
 }
 
-.attribution a { color: hsl(228, 45%, 44%); }
+.attribution { 
+    font-size: 12px;
+    display: none;
+}
+
