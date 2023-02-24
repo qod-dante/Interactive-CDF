@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <title>Frontend Mentor | Interactive card details form</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet"> -->
   <link rel="stylesheet" href="./main-palette.css">
 </head>
 <body class="grid">
@@ -34,19 +34,23 @@
           <div class="cardNumberBox grid">
             <label for="cardNumber">CARD NUMBER</label>
             <input type="text" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
+            <span id="cNumberError" class="errorTxt">Wrong format, numbers only</span>
           </div>
           <div class="expDate_cvcBox grid">
             <label for="expDateMM" class="LblExpDate">EXP. DATE (MM/YY)</label>
             <input type="text" id="expDateMM" name="expDateMM" placeholder="MM">
+            <span id="expMMError" class="errorTxt">Can't be blank</span>
             <input type="text" id="expDateYY" name="expDateYY" placeholder="YY">
+            <span id="expYYError" class="errorTxt">Can't be blank</span>
             <label for="cvc" class="LblCvc">CVC</label>
             <input type="text" id="cvc" name="cvc" placeholder="e.g. 123">
+            <span id="cvcError" class="errorTxt">Can't be blank</span>
           </div>
           <div class="confirmBox grid">
             <input type="submit" value="Confirm">
           </div>
         </div>
-        <div class="post-form grid">
+        <div class="post-form">
           <img class="formSuccessIcon" src="./images/icon-complete.svg" alt="Form Successful Icon">
           <h3>THANK YOU!</h3>
           <span>We've added your card details</span>
@@ -54,8 +58,8 @@
         </div>
       </form>
       <footer class="attribution-desktop txt-a-center">
-        <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.</span> 
-        <span>Coded by <a href="https://github.com/qod-dante/" target="_blank">qod-dante</a>.</span>
+        <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+          Coded by <a href="https://github.com/qod-dante/" target="_blank">qod-dante</a>.</span>
       </footer>
     </div>
   </main>
