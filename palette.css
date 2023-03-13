@@ -1,0 +1,479 @@
+:root {
+    --LnGrad1: hsl(249, 99%, 64%);
+    --LnGrad2: hsl(278, 94%, 30%);
+    --errorRed: hsl(0, 100%, 66%);
+    --white: hsl(0, 0%, 100%);
+    --lightGreyishViolet: hsl(270, 3%, 87%);
+    --veryDarkViolet: hsl(278, 68%, 11%);
+    --pFontSize: 18px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* Quick Styles */
+
+.grid { display: grid; }
+.flex  { display: flex; }
+.txt-a-center { text-align: center; }
+.a-center { align-items: center; }
+.j-center { justify-content: center; }
+.width100 { width: 100%; }
+.height100 { height: 100%; }
+.w100v { width: 100vw; }
+.h100v { height: 100vh; }
+.absolute { position: absolute; }
+.relative { position: relative; }
+
+/* Common Styles */
+
+body {
+    display: grid;
+    grid-template-areas:
+    'main'
+    'attribution';
+    grid-template-rows: auto min-content;
+    grid-template-columns: auto;
+    min-width: 375px;
+    max-width: 1440px;
+}
+
+main {
+    display: grid;
+    grid-area: main;
+    grid-template-areas:
+    'card-block'
+    'form-block';
+    width: 100%;
+}
+
+.card-block {
+    display: grid;
+    grid-area: card-block;
+    grid-template-areas:
+    'card-back'
+    'card-front';
+    grid-template-rows: max-content max-content;
+    justify-content: center;
+    background: url('./images/bg-main-mobile.png') no-repeat;
+    background-size: 100% 100%;
+    max-height: 530px;
+    /* height: 450.969px; */
+    font-size: var(--pFontSize);
+    color: var(--lightGreyishViolet);
+    margin-bottom: -130px;
+}
+
+/* at width 447px, height = 450.969px */
+
+.card-back {
+    grid-area: card-back;
+    width: auto;
+    height: auto;
+    position: relative;
+    left: 13%;
+    top: 24%;
+}
+
+#cvcOutput {
+    left: 72%;
+    top: 40%;
+    font-size: 0.6em;
+    letter-spacing: 1px;
+}
+
+@media screen and (min-width: 375px) and (max-width: 414px) {
+    .card-back {
+        top: 33px;
+    }
+
+    #cvcOutput {
+        top: 70px;
+    }
+}
+
+.card-front {
+    grid-area: card-front;
+    width: auto;
+    height: auto;
+    position: relative;
+    top: -24.6%;
+    left: -5%;
+}
+
+.card-logo {
+    width: 59px;
+    height: 31px;
+    left: 7%;
+    top: 10%;
+}
+
+#cardNumberOutput {
+    left: 7%;
+    top: 50%;
+    font-size: 1.08em;
+    letter-spacing: 1.3px;
+}
+
+#cardHolderOutput {
+    left: 7%;
+    top: 75%;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+#ExpDateOutput {
+    left: 75%;
+    top: 75%;
+    font-size: 0.6em;
+}
+
+.card-back__img, .card-front__img {
+    min-width: 290px;
+    min-height: 160px;
+    max-width: 447px;
+    max-height: 265px;
+    width: 90%;
+    height: 90%;
+    position: static;
+}
+
+.form-block {
+    display: grid;
+    grid-area: form-block;
+    grid-template-areas: 'cardHolderDetails';
+    font-size: var(--pFontSize);
+    justify-content: center;
+    background-color: var(--white);
+    padding-top: 80px;
+}
+
+input[type="text"]:focus {
+    outline: 1px solid var(--veryDarkViolet);
+}
+
+.errorTxt {
+    color: var(--errorRed);
+    font-size: 0.7em;
+    visibility: hidden;
+}
+
+#cardHolderDetails {
+    display: grid;
+    grid-area: cardHolderDetails;
+    grid-template-areas:
+    'pre-form'
+    'post-form';
+    grid-template-rows: 100% 0%;
+    max-width: 385px;
+}
+
+.pre-form {
+    display: grid;
+    grid-area: pre-form;
+    grid-template-areas:
+    'cardHolderBox'
+    'cardNumberBox'
+    'expDate_cvcBox'
+    'confirmBox';
+    margin: 0 1rem 2rem;
+}
+
+.pre-form > div { padding-bottom: 1.2rem; }
+
+.pre-form div > label {
+    font-size: 0.7em;
+    padding-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.pre-form div > input, #cardDetailsReset {
+    font-size: var(--pFontSize);
+    outline: none;
+    border: 1px solid var(--lightGreyishViolet);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+}
+
+.cardHolderBox {
+    display: grid;
+    grid-area: cardHolderBox;
+    grid-template-areas:
+    'LblCardHolder'
+    'cardHolder';
+}
+
+.cardHolderBox label {
+    grid-area: LblCardHolder;
+}
+
+#cardHolder {
+    grid-area: cardHolder;
+}
+
+.cardNumberBox {
+    display: grid;
+    grid-area: cardNumberBox;
+    grid-template-areas:
+    'LblCardNumber'
+    'cardNumber'
+    'cNumberError';
+}
+
+.cardNumberBox label {
+    grid-area: LblCardNumber;
+}
+
+#cardNumber {
+    grid-area: cardNumber;
+}
+
+#cNumberError {
+    grid-area: cNumberError;
+}
+
+.expDate_cvcBox {
+    display: grid;
+    grid-area: expDate_cvcBox;
+    grid-template-areas:
+    'LblExpDate LblExpDate LblCvc LblCvc'
+    'expDateMM expDateYY cvc cvc'
+    'expMMError expYYError cvcError cvcError';
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto;
+}
+
+.LblExpDate {
+    grid-area: LblExpDate;
+}
+
+.LblCvc {
+    grid-area: LblCvc;
+}
+
+#expDateMM {
+    grid-area: expDateMM;
+    width: 70px;
+}
+
+#expDateYY {
+    grid-area: expDateYY;
+    width: 70px;
+}
+
+#cvc {
+    grid-area: cvc;
+}
+
+#expMMError {
+    grid-area: expMMError;
+}
+
+#expYYError {
+    grid-area: expYYError;
+}
+
+#cvcError {
+    grid-area: cvcError;
+}
+
+.confirmBox {
+    display: grid;
+    grid-area: confirmBox;
+    grid-template-areas:'confirm-btn';
+    width: 100%;
+}
+
+.confirmBox input {
+    grid-area: confirm-btn;
+    background-color: var(--veryDarkViolet);
+    color: var(--lightGreyishViolet);
+}
+
+.post-form {
+    display: none;
+    grid-area: post-form;
+    grid-template-areas:
+    'formSuccessIcon'
+    'thank-you'
+    'details-added'
+    'cardDetailsReset';
+    justify-items: center;
+    margin: 0 1rem 2rem;
+}
+
+.formSuccessIcon {
+    grid-area: formSuccessIcon;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 2.5rem;
+}
+
+.thank-you {
+    grid-area: thank-you;
+    font-size: 1.6em;
+    color: var(--veryDarkViolet);
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.details-added {
+    grid-area: details-added;
+    color: grey;
+    margin-bottom: 2.5rem;
+}
+
+#cardDetailsReset {
+    grid-area: cardDetailsReset;
+    width: 100%;
+    background-color: var(--veryDarkViolet);
+    color: var(--lightGreyishViolet);
+}
+
+.attribution {
+    grid-area: attribution;
+    font-size: 12px;
+}
+
+.attribution-desktop { display: none; }
+
+/* Large + Extra Large Screens */
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+    body {
+        grid-template-areas:'main';
+        grid-template-rows: auto;
+        grid-template-columns: auto;
+        height: 900px;
+    }
+
+    main {
+        grid-area: main;
+        grid-template-areas:'card-block form-block';
+        grid-template-columns: 483px auto;
+        height: 100%;
+        width: 100%;
+    }
+
+    .card-block {
+        grid-area: card-block;
+        grid-template-areas:
+        'card-front'
+        'card-back';
+        grid-template-rows: max-content max-content;
+        justify-content: center;
+        background: url(./images/bg-main-desktop.png) no-repeat;
+        background-size: 100% 100%;
+        margin: 0;
+        width: 483px;
+        max-height: none;
+    }
+
+    .card-front {
+        grid-area: card-front;
+        position: relative;
+        align-self: center;
+        left: 35%;
+        top: 45%;
+    }
+
+    .card-logo {
+        width: 84px;
+        height: 47px;
+    }
+
+    #cardNumberOutput {
+        font-size: 1.7em;
+        letter-spacing: 2.5px;
+        top: 55%;
+    }
+
+    #cardHolderOutput {
+        font-size: 0.9em;
+        top: 80%;
+        letter-spacing: 2px;
+    }
+
+    #ExpDateOutput {
+        font-size: 0.9em;
+        top: 80%;
+        letter-spacing: 2px;
+    }
+
+    .card-back {
+        grid-area: card-back;
+        position: relative;
+        align-self: center;
+        left: 50%;
+        top: 60%;
+    }
+
+    #cvcOutput {
+        top: 43.5%;
+        left: 78%;
+        font-size: 0.9em;
+        letter-spacing: 2px;
+    }
+
+    .card-front__img, .card-back__img {
+        min-width: unset;
+        max-width: unset;
+        min-height: unset;
+        max-height: unset;
+        width: 447px;
+        height: 265px;
+    }
+
+    .form-block {
+        grid-area: form-block;
+        grid-template-areas:
+        'cardHolderDetails'
+        'attribution-desktop';
+        grid-template-columns: auto;
+        grid-template-rows: auto min-content;
+        width: 100%;
+        justify-content: center;
+        padding: 0;
+    }
+
+    #cardDetailsHolder {
+        grid-area: cardHolderDetails;
+        grid-template-areas:'pre-form';
+    }
+
+    .pre-form {
+        grid-area: pre-form;
+        max-height: 402.250px;
+        align-self: center;
+    }
+
+    .post-form {
+        display: none;
+        align-self: center;
+    }
+
+    .attribution { display: none; }
+    
+    .attribution-desktop {
+        grid-area: attribution-desktop;
+        display: inline;
+        font-size: 12px;
+        height: fit-content;
+    }
+}
+
+/* 1279 - 1025 */
+
+@media screen and (min-width: 1024px) and (max-width: 1279px) {
+
+    .card-block { width: 300px; }
+    .card-front { left: 20%; }
+    .card-back { left: 40%; }
+}
