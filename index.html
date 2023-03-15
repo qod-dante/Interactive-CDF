@@ -7,7 +7,6 @@
   <title>Frontend Mentor | Interactive card details form</title>
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
   <!-- <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet"> -->
-  <!-- <link rel="stylesheet" href="./main-palette.css"> -->
   <link rel="stylesheet" href="./palette.css">
 </head>
 <body>
@@ -26,36 +25,36 @@
       </div>
     </div>
     <div class="form-block">
-      <form method="get" id="cardHolderDetails">
+      <form method="get" id="cardHolderDetails" name="cardHolderDetails">
         <div class="pre-form">
           <div class="cardHolderBox">
             <label for="cardHolder">CARDHOLDER NAME</label>
-            <input type="text" id="cardHolder" name="cardHolder" placeholder="e.g. Jane Appleseed">
+            <input type="text" id="cardHolder" name="cardHolder" placeholder="e.g. Jane Appleseed" oninput="realTimeUpdateCardHolder()">
           </div>
           <div class="cardNumberBox">
             <label for="cardNumber">CARD NUMBER</label>
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000">
+            <input type="text" id="cardNumber" name="cardNumber" placeholder="e.g. 1234 5678 9123 0000" maxlength="19" oninput="realTimeUpdateCardNumber()">
             <span id="cNumberError" class="errorTxt">Wrong format, numbers only</span>
           </div>
           <div class="expDate_cvcBox">
             <label for="expDateMM" class="LblExpDate">EXP. DATE (MM/YY)</label>
-            <input type="text" id="expDateMM" name="expDateMM" placeholder="MM">
+            <input type="text" id="expDateMM" name="expDateMM" placeholder="MM" maxlength="2" oninput="realTimeUpdateExpDateMM()">
             <span id="expMMError" class="errorTxt">Can't be blank</span>
-            <input type="text" id="expDateYY" name="expDateYY" placeholder="YY">
+            <input type="text" id="expDateYY" name="expDateYY" placeholder="YY" maxlength="2" oninput="realTimeUpdateExpDateYY()">
             <span id="expYYError" class="errorTxt">Can't be blank</span>
             <label for="cvc" class="LblCvc">CVC</label>
-            <input type="text" id="cvc" name="cvc" placeholder="e.g. 123">
+            <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" maxlength="3" oninput="realTimeUpdateCvc()">
             <span id="cvcError" class="errorTxt">Can't be blank</span>
           </div>
           <div class="confirmBox">
-            <input type="submit" value="Confirm">
+            <input type="submit" id="cardDetailsSubmit" name="cardDetailsSubmit" value="Confirm">
           </div>
         </div>
         <div class="post-form">
           <img class="formSuccessIcon" src="./images/icon-complete.svg" alt="Form Successful Icon">
           <span class="thank-you">THANK YOU!</span>
           <span class="details-added">We've added your card details</span>
-          <input type="reset" value="Continue" id="cardDetailsReset">
+          <input type="reset" value="Continue" id="cardDetailsReset" name="cardDetailsReset">
         </div>
       </form>
       <footer class="attribution-desktop txt-a-center">
